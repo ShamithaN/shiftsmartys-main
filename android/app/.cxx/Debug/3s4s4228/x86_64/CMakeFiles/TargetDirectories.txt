@@ -1,0 +1,2 @@
+D:/AIT/ait_mobile/shiftsmart/android/app/.cxx/Debug/3s4s4228/x86_64/CMakeFiles/edit_cache.dir
+D:/AIT/ait_mobile/shiftsmart/android/app/.cxx/Debug/3s4s4228/x86_64/CMakeFiles/rebuild_cache.dir

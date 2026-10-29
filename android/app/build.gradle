@@ -1,0 +1,76 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" 
+}
+
+def GOOGLE_MAPS_API_KEY = project.hasProperty("GOOGLE_MAPS_API_KEY") 
+    ? project.GOOGLE_MAPS_API_KEY 
+    : project.findProperty("GOOGLE_MAPS_API_KEY") 
+        ?: System.getenv("GOOGLE_MAPS_API_KEY")
+
+android {
+    namespace = "com.AIT_MOBILE.shiftsmart"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = "27.0.12077973"
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    defaultConfig {
+        applicationId = "com.AIT_MOBILE.shiftsmart"
+        minSdkVersion = flutter.minSdkVersion // ✅ UPDATED: Recommended for Notification Support
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        manifestPlaceholders = [ appAuthRedirectScheme: "msauth" ] 
+        // resValue "string", "google_maps_api_key", GOOGLE_MAPS_API_KEY ?: "PLACEHOLDER"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("/Users/malinduinduwara/Documents/AIT Services - Australia/Shiftsmart/ait_mobile-buddhini_/my-release-key.jks")
+            storePassword "aitshiftsmart1011*suga"
+            keyAlias "my-key-alias"
+            keyPassword "aitshiftsmart1011*suga"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // --- Firebase Dependencies ---
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+
+    // Add the dependency for the Firebase Cloud Messaging library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // --- Other Dependencies ---
+    implementation 'io.opentelemetry:opentelemetry-api:1.10.0'
+    implementation 'io.opentelemetry:opentelemetry-sdk:1.10.0'
+}
+
+flutter {
+    source = "../.."
+}

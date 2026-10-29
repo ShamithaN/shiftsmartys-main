@@ -1,0 +1,2 @@
+D:/buddhini/Flutter apps/ait-mobile2/ait_mobile/shiftsmart/android/app/.cxx/Debug/3x2x583x/x86/CMakeFiles/edit_cache.dir
+D:/buddhini/Flutter apps/ait-mobile2/ait_mobile/shiftsmart/android/app/.cxx/Debug/3x2x583x/x86/CMakeFiles/rebuild_cache.dir
